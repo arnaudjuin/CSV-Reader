@@ -1,25 +1,32 @@
 <style>
-table, th, td {
-   border: 1px solid black;
-   padding:5px;
-}
-table {
-   border-collapse: collapse;
-   margin:10px;
-}
+  table,
+  th,
+  td {
+    border: 1px solid black;
+    padding: 5px;
+  }
+  table {
+    border-collapse: collapse;
+    margin: 10px;
+  }
 </style>
-<body ">
-<button ng-click="readCSV()">
-Display CSV as Data Table
-</button>
-<div id="divID">
-  <table>
-    <tr ng-repeat="x in data track by $index">
-      <td ng-repeat="y in x track by $index">{{ y }}</td>
-    </tr>
-  </table>
-</div>
-<div>
-<table>
-</table>
-</div>
+<body>
+  <button ng-if="index >= 200" ng-click="previousPage()">
+    Previous Page
+  </button>
+  <button ng-if="index + 200 < length " ng-click="nextPage()">
+    Next Page
+  </button>
+
+  <span>{{index }} / {{length }}</span>
+  <div id="divID">
+    <table ng-init="readCSV()">
+      <tr ng-repeat="x in result">
+        <td ng-repeat="y in x track by $index">{{ y }}</td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <table></table>
+  </div>
+</body>
